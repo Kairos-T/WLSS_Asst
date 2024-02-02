@@ -10,7 +10,7 @@ fi
 yum install usbguard -y
 
 # Create initial rule set
-usbguard generate-policy > /etc/usbguard/rules.conf
+usbguard generate-policy > /rules.conf
 
 # Enable and start USBGuard
 systemctl start usbguard.service
@@ -22,13 +22,12 @@ systemctl enable usbguard.service
 systemctl is-active --quiet usbguard.service && echo "USBGuard is active." || echo "USBGuard is not active."
 
 # Create default ruleset to block all new USB devices
-usbguard generate-policy > /etc/usbguard/rules.conf
-echo block >> /etc/usbguard/rules.conf
+echo block >> /rules.conf
 
 # Load the new ruleset
 #usbguard read-policy /etc/usbguard/rules.conf
-usbguard reload
-install -m 0600 -o root -g root /etc/usbguard/rules.conf 
+#usbguard reload
+install -m 0600 -o root -g root rules.conf /etc/usbguard/rules.conf 
 
 # Inform user of completion
 echo "USBGuard has been installed and configured."
