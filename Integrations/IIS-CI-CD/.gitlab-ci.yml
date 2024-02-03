@@ -19,5 +19,3 @@ build-job:       # This job runs in the build stage, which runs first.
   script:
     - copy * C:\inetpub\wwwroot
     - echo "Copied files to C:\inetpub\wwwroot"
-  tags:
-    - iis
